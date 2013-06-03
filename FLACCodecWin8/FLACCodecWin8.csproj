@@ -110,7 +110,6 @@
     <Compile Include="AudioEncoderClass.cs" />
     <Compile Include="AudioEncoderSettings.cs" />
     <Compile Include="AudioPCMConfig.cs" />
-    <Compile Include="AudioPipe.cs" />
     <Compile Include="AudioSamples.cs" />
     <Compile Include="BitReader.cs" />
     <Compile Include="BitWriter.cs" />
@@ -119,9 +118,6 @@
     <Compile Include="CRC\CRC16CCITT.cs" />
     <Compile Include="CRC\CRC32.cs" />
     <Compile Include="CRC\CRC8.cs" />
-    <Compile Include="CyclicBuffer.cs" />
-    <Compile Include="CyclicBufferInputStream.cs" />
-    <Compile Include="CyclicBufferOutputStream.cs" />
     <Compile Include="DummyWriter.cs" />
     <Compile Include="FlacFrame.cs" />
     <Compile Include="FlacSubframe.cs" />
@@ -144,12 +140,9 @@
     <Compile Include="RiceContext.cs" />
     <Compile Include="SeekPoint.cs" />
     <Compile Include="SilenceGenerator.cs" />
-    <Compile Include="SRDescriptionAttribute.cs" />
     <Compile Include="StereoMethod.cs" />
     <Compile Include="SubframeType.cs" />
     <Compile Include="UserDefinedEncoderSettings.cs" />
-    <Compile Include="UserDefinedReader.cs" />
-    <Compile Include="UserDefinedWriter.cs" />
     <Compile Include="WAVReader.cs" />
     <Compile Include="WAVWriter.cs" />
     <Compile Include="WAVWriterSettings.cs" />

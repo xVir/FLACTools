@@ -35,10 +35,6 @@ namespace CUETools.Codecs
         {
         }
 
-        public override void Close()
-        {
-        }
-
         public override void Flush()
         {
             throw new NotSupportedException();

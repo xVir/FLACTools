@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.Text;
+using System.Reflection;
+using System.Linq;
 
 namespace CUETools.Codecs
 {
@@ -22,8 +24,18 @@ namespace CUETools.Codecs
         public AudioEncoderSettings(string supported_modes, string default_mode)
         {
             // Iterate through each property and call ResetValue()
-            foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(this))
-                property.ResetValue(this);
+            var type = this.GetType();
+
+            foreach (var property in type.GetTypeInfo().DeclaredProperties)
+            {
+                if (property.CustomAttributes.Any(a => a.AttributeType == typeof(DefaultValueAttribute)))
+                {
+                    var attr = property.CustomAttributes.First(a => a.AttributeType == typeof (DefaultValueAttribute));
+                    object propertyValue = attr.ConstructorArguments[0].Value;
+                    property.SetValue(this, propertyValue);
+                }
+            }
+
             this.m_supported_modes = supported_modes;
             this.m_default_mode = default_mode;
             //GetSupportedModes(out m_default_mode);
@@ -53,22 +65,6 @@ namespace CUETools.Codecs
         public AudioEncoderSettings Clone()
         {
             return this.MemberwiseClone() as AudioEncoderSettings;
-        }
-
-        public bool HasBrowsableAttributes()
-        {
-            bool hasBrowsable = false;
-            foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(this))
-            {
-                bool isBrowsable = true;
-                foreach (var attribute in property.Attributes)
-                {
-                    var browsable = attribute as BrowsableAttribute;
-                    isBrowsable &= browsable == null || browsable.Browsable;
-                }
-                hasBrowsable |= isBrowsable;
-            }
-            return hasBrowsable;
         }
 
         [XmlIgnore]

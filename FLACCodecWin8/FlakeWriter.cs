@@ -55,18 +55,12 @@ namespace CUETools.Codecs.FLAKE
         }
 
         [DefaultValue(false)]
-        [DisplayName("Verify")]
-        [SRDescription(typeof(Properties.Resources), "DoVerifyDescription")]
         public bool DoVerify { get; set; }
 
         [DefaultValue(true)]
-        [DisplayName("MD5")]
-        [SRDescription(typeof(Properties.Resources), "DoMD5Description")]
         public bool DoMD5 { get; set; }
 
         [DefaultValue(false)]
-        [DisplayName("Allow Non-subset")]
-        [SRDescription(typeof(Properties.Resources), "AllowNonSubsetDescription")]
         public bool AllowNonSubset { get; set; }
     }
 
@@ -242,7 +236,7 @@ namespace CUETools.Codecs.FLAKE
         {
             if (inited)
             {
-                _IO.Close();
+                _IO.Dispose();
                 inited = false;
             }
 
