@@ -120,7 +120,7 @@ namespace CUETools.Codecs.FLAKE
 
 		public void Close()
 		{
-			_IO.Close();
+			_IO.Dispose();
 		}
 
 		public long Length

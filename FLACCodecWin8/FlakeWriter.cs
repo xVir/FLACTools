@@ -30,6 +30,8 @@ using Windows.Security.Cryptography;
 
 using CUETools.Codecs;
 using Windows.Security.Cryptography.Core;
+using System.Reflection;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace CUETools.Codecs.FLAKE
 {
@@ -68,8 +70,8 @@ namespace CUETools.Codecs.FLAKE
     //[AudioEncoderClass("libFlake nonsub", "flac", true, "9 10 11", "9", 3, typeof(FlakeWriterSettings))]
     public class FlakeWriter : IAudioDest
     {
-        Stream _IO = null;
-        string _path;
+        private readonly Stream _IO;
+        //string _path;
         long _position;
 
         // number of audio channels
@@ -120,7 +122,7 @@ namespace CUETools.Codecs.FLAKE
         int _windowsize = 0, _windowcount = 0;
 
         Crc8 crc8;
-        HashAlgorithmProvider md5 = HashAlgorithmProvider.OpenAlgorithm("MD5");
+        CryptographicHash md5;
 
         FlacFrame frame;
         FlakeReader verify;
@@ -130,7 +132,7 @@ namespace CUETools.Codecs.FLAKE
 
         bool inited = false;
 
-        public FlakeWriter(string path, Stream IO, FlakeWriterSettings settings)
+        public FlakeWriter(Stream IO, FlakeWriterSettings settings)
         {
             m_settings = settings;
 
@@ -143,7 +145,14 @@ namespace CUETools.Codecs.FLAKE
 
             // flake_validate_params
 
-            _path = path;
+            //_path = path;
+
+            if (IO == null)
+            {
+                throw new ArgumentNullException("IO");
+
+            }
+
             _IO = IO;
 
             samplesBuffer = new int[Flake.MAX_BLOCKSIZE * (channels == 2 ? 4 : channels)];
@@ -158,10 +167,7 @@ namespace CUETools.Codecs.FLAKE
             frame = new FlacFrame(channels * 2);
         }
 
-        public FlakeWriter(string path, FlakeWriterSettings settings)
-            : this(path, null, settings)
-        {
-        }
+       
 
         public int TotalSize
         {
@@ -206,9 +212,10 @@ namespace CUETools.Codecs.FLAKE
 
                     if (md5 != null)
                     {
-                        md5.TransformFinalBlock(frame_buffer, 0, 0);
                         _IO.Position = 26;
-                        _IO.Write(md5.Hash, 0, md5.Hash.Length);
+
+                        var hashValue = md5.GetValueAndReset().ToArray();
+                        _IO.Write(hashValue, 0, hashValue.Length);
                     }
 
                     if (seek_table != null)
@@ -218,7 +225,7 @@ namespace CUETools.Codecs.FLAKE
                         _IO.Write(header, 4, len - 4);
                     }
                 }
-                _IO.Close();
+                _IO.Dispose();
                 inited = false;
             }
 
@@ -240,8 +247,6 @@ namespace CUETools.Codecs.FLAKE
                 inited = false;
             }
 
-            if (_path != "")
-                File.Delete(_path);
         }
 
         public long Position
@@ -1754,8 +1759,8 @@ new int[] { // 30
         {
             if (!inited)
             {
-                if (_IO == null)
-                    _IO = new FileStream(_path, FileMode.Create, FileAccess.Write, FileShare.Read);
+                
+
                 if (!m_settings.IsValid())
                     throw new Exception("unsupported encoder settings");
                 inited = true;
@@ -1781,16 +1786,14 @@ new int[] { // 30
             }
 
             if (md5 != null)
-                md5.TransformBlock(buff.Bytes, 0, buff.ByteLength, null, 0);
+                md5.Append(buff.Bytes.AsBuffer(0, buff.ByteLength));
         }
-
-        public string Path { get { return _path; } }
 
         public static string Vendor
         {
             get
             {
-                var version = typeof(FlakeWriter).Assembly.GetName().Version;
+                var version = typeof(FlakeWriter).GetTypeInfo().Assembly.GetName().Version;
                 return vendor_string ?? "CUETools " + version.Major + "." + version.Minor + "." + version.Build;
             }
             set
@@ -1864,7 +1867,7 @@ new int[] { // 30
         int write_vorbis_comment(byte[] comment, int pos, int last)
         {
             BitWriter bitwriter = new BitWriter(comment, pos, 4);
-            Encoding enc = new ASCIIEncoding();
+            Encoding enc = new UTF8Encoding();
             int vendor_len = enc.GetBytes(Vendor, 0, Vendor.Length, comment, pos + 8);
 
             // metadata header
@@ -2018,7 +2021,7 @@ new int[] { // 30
 
             // initialize CRC & MD5
             if (_IO.CanSeek && m_settings.DoMD5)
-                md5 = new MD5CryptoServiceProvider();
+                md5 = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5).CreateHash();
 
             if (m_settings.DoVerify)
             {

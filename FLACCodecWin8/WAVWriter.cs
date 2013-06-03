@@ -160,7 +160,7 @@ namespace CUETools.Codecs
                 }
             }
 
-            _bw.Close();
+            _bw.Dispose();
 
             _bw = null;
             _IO = null;
@@ -171,7 +171,7 @@ namespace CUETools.Codecs
 
         public void Delete()
         {
-            _bw.Close();
+            _bw.Dispose();
             _bw = null;
             _IO = null;
             if (_path != "")

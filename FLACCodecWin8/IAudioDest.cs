@@ -4,7 +4,6 @@
 	{
         AudioEncoderSettings Settings { get; }
         
-        string Path { get; }
         long FinalSampleCount { set; }
 
 		void Write(AudioBuffer buffer);

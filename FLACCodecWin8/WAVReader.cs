@@ -123,7 +123,7 @@ namespace CUETools.Codecs
         {
             if (_br != null)
             {
-                _br.Close();
+                _br.Dispose();
                 _br = null;
             }
             _IO = null;
