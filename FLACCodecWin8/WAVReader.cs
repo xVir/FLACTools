@@ -6,13 +6,12 @@ namespace CUETools.Codecs
     [AudioDecoderClass("cuetools", "wav", 2)]
     public class WAVReader : IAudioSource
     {
-        Stream _IO;
+        private Stream _IO;
         BinaryReader _br;
         long _dataOffset, _samplePos, _sampleLen;
         private AudioPCMConfig pcm;
         long _dataLen;
         bool _largeFile;
-        string _path;
 
         public long Position
         {
@@ -71,12 +70,15 @@ namespace CUETools.Codecs
 
         public AudioPCMConfig PCM { get { return pcm; } }
 
-        public string Path { get { return _path; } }
-
-        public WAVReader(string path, Stream IO)
+        public WAVReader(Stream IO)
         {
-            _path = path;
-            _IO = IO != null ? IO : new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 0x10000, FileOptions.SequentialScan);
+
+            if (IO == null)
+            {
+                throw new ArgumentNullException("IO");
+            }
+
+            _IO = IO;
             _br = new BinaryReader(_IO);
 
             ParseHeaders();
@@ -87,10 +89,14 @@ namespace CUETools.Codecs
                 _sampleLen = _dataLen / pcm.BlockAlign;
         }
 
-        public WAVReader(string path, Stream IO, AudioPCMConfig _pcm)
+        public WAVReader(Stream IO, AudioPCMConfig _pcm)
         {
-            _path = path;
-            _IO = IO != null ? IO : new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 0x10000, FileOptions.SequentialScan);
+            if (IO == null)
+            {
+                throw new ArgumentNullException("IO");
+            }
+
+            _IO = IO;
             _br = new BinaryReader(_IO);
 
             _largeFile = false;
@@ -108,9 +114,9 @@ namespace CUETools.Codecs
             }
         }
 
-        public static AudioBuffer ReadAllSamples(string path, Stream IO)
+        public static AudioBuffer ReadAllSamples(Stream IO)
         {
-            WAVReader reader = new WAVReader(path, IO);
+            WAVReader reader = new WAVReader(IO);
             AudioBuffer buff = new AudioBuffer(reader, (int)reader.Length);
             reader.Read(buff, -1);
             if (reader.Remaining != 0)

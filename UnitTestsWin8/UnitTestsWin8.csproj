@@ -6,14 +6,15 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{180D86F8-6249-47F2-BB13-CC8FA14DB890}</ProjectGuid>
+    <ProjectGuid>{933C0D5C-D2C9-4336-B68E-C1B7DA732BEB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FLACCodecWin8</RootNamespace>
-    <AssemblyName>FLACCodecWin8</AssemblyName>
+    <RootNamespace>UnitTestsWin8</RootNamespace>
+    <AssemblyName>UnitTestsWin8</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>UnitTestsWin8_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,7 +24,6 @@
     <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -99,71 +99,50 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <AppXPackage>True</AppXPackage>
+    <AppxPackageIncludePrivateSymbols>true</AppxPackageIncludePrivateSymbols>
+  </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <PRIResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </PRIResource>
-    <PRIResource Include="Properties\Resources.ru-RU.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.ru-RU.Designer.cs</LastGenOutput>
-    </PRIResource>
+    <!--A reference to the entire .Net Framework and Windows SDK are automatically included-->
+    <SDKReference Include="MSTestFramework, Version=11.0" />
+    <SDKReference Include="TestPlatform, Version=11.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioBuffer.cs" />
-    <Compile Include="AudioDecoderClass.cs" />
-    <Compile Include="AudioEncoderClass.cs" />
-    <Compile Include="AudioEncoderSettings.cs" />
-    <Compile Include="AudioPCMConfig.cs" />
-    <Compile Include="AudioSamples.cs" />
-    <Compile Include="BitReader.cs" />
-    <Compile Include="BitWriter.cs" />
-    <Compile Include="ChannelMode.cs" />
-    <Compile Include="CRC\CRC16.cs" />
-    <Compile Include="CRC\CRC16CCITT.cs" />
-    <Compile Include="CRC\CRC32.cs" />
-    <Compile Include="CRC\CRC8.cs" />
-    <Compile Include="DummyWriter.cs" />
-    <Compile Include="FlacFrame.cs" />
-    <Compile Include="FlacSubframe.cs" />
-    <Compile Include="FlacSubframeInfo.cs" />
-    <Compile Include="Flake.cs" />
-    <Compile Include="FlakeReader.cs" />
-    <Compile Include="FlakeWriter.cs" />
-    <Compile Include="IAudioDest.cs" />
-    <Compile Include="IAudioFilter.cs" />
-    <Compile Include="IAudioSource.cs" />
-    <Compile Include="IWavePlayer.cs" />
-    <Compile Include="LPC.cs" />
-    <Compile Include="LpcContext.cs" />
-    <Compile Include="MetadataType.cs" />
-    <Compile Include="NullStream.cs" />
-    <Compile Include="OrderMethod.cs" />
-    <Compile Include="PlaybackState.cs" />
-    <Compile Include="PredictionType.cs" />
+    <Compile Include="FlakeWriterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.ru-RU.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
-    </Compile>
-    <Compile Include="RiceContext.cs" />
-    <Compile Include="SeekPoint.cs" />
-    <Compile Include="SilenceGenerator.cs" />
-    <Compile Include="StereoMethod.cs" />
-    <Compile Include="SubframeType.cs" />
-    <Compile Include="UserDefinedEncoderSettings.cs" />
-    <Compile Include="WAVReader.cs" />
-    <Compile Include="WAVWriter.cs" />
-    <Compile Include="WAVWriterSettings.cs" />
-    <Compile Include="WindowFunction.cs" />
-    <Compile Include="WindowMethod.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="flake.flac">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="UnitTestsWin8_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\UnitTestLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\UnitTestSmallLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\UnitTestSplashScreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\UnitTestStoreLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="test.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FLACCodecWin8\FLACCodecWin8.csproj">
+      <Project>{180d86f8-6249-47f2-bb13-cc8fa14db890}</Project>
+      <Name>FLACCodecWin8</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
@@ -172,7 +151,7 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
-  </Target>
+  </Target>  
   <Target Name="AfterBuild">
   </Target>
   -->

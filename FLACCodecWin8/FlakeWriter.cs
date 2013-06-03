@@ -26,6 +26,7 @@ using System.ComponentModel;
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
+using FLACCodecWin8.Properties;
 using Windows.Security.Cryptography;
 
 using CUETools.Codecs;
@@ -225,7 +226,6 @@ namespace CUETools.Codecs.FLAKE
                         _IO.Write(header, 4, len - 4);
                     }
                 }
-                _IO.Dispose();
                 inited = false;
             }
 
@@ -236,7 +236,7 @@ namespace CUETools.Codecs.FLAKE
         {
             DoClose();
             if (sample_count > 0 && _position != sample_count)
-                throw new Exception(Properties.Resources.ExceptionSampleCount);
+                throw new Exception(Resources.ExceptionSampleCount);
         }
 
         public void Delete()
@@ -1732,12 +1732,12 @@ new int[] { // 30
             {
                 int decoded = verify.DecodeFrame(frame_buffer, 0, fs);
                 if (decoded != fs || verify.Remaining != bs)
-                    throw new Exception(Properties.Resources.ExceptionValidationFailed);
+                    throw new Exception(Resources.ExceptionValidationFailed);
                 fixed (int* s = verifyBuffer, r = verify.Samples)
                 {
                     for (int ch = 0; ch < channels; ch++)
                         if (AudioSamples.MemCmp(s + ch * Flake.MAX_BLOCKSIZE, r + ch * Flake.MAX_BLOCKSIZE, bs))
-                            throw new Exception(Properties.Resources.ExceptionValidationFailed);
+                            throw new Exception(Resources.ExceptionValidationFailed);
                 }
             }
 

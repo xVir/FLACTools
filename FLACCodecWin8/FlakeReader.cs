@@ -76,10 +76,14 @@ namespace CUETools.Codecs.FLAKE
 			}
 		}
 
-		public FlakeReader(string path, Stream IO)
+		public FlakeReader(Stream IO)
 		{
-			_path = path;
-			_IO = IO != null ? IO : new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 0x10000);
+		    if (IO == null)
+		    {
+                throw new ArgumentNullException("IO");
+		    }
+
+			_IO = IO;
 
 			crc8 = new Crc8();
 			

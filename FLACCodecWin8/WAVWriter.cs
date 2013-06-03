@@ -41,17 +41,16 @@ namespace CUETools.Codecs
 
         public string Path { get { return _path; } }
 
-        public WAVWriter(string path, Stream IO, WAVWriterSettings settings)
+        public WAVWriter(Stream IO, WAVWriterSettings settings)
         {
             m_settings = settings;
-            _path = path;
-            _IO = IO != null ? IO : new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read);
-            _bw = new BinaryWriter(_IO);
-        }
 
-        public WAVWriter(string path, WAVWriterSettings settings)
-            : this(path, null, settings)
-        {
+            if (IO == null)
+            {
+                throw new ArgumentNullException("IO");
+            }
+
+            _bw = new BinaryWriter(_IO);
         }
 
         public void WriteChunk(uint fcc, byte[] data)
@@ -174,8 +173,7 @@ namespace CUETools.Codecs
             _bw.Dispose();
             _bw = null;
             _IO = null;
-            if (_path != "")
-                File.Delete(_path);
+
         }
 
         public void Write(AudioBuffer buff)

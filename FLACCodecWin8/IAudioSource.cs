@@ -3,7 +3,6 @@
 	public interface IAudioSource
 	{
 		AudioPCMConfig PCM { get; }
-		string Path { get; }
 
 		long Length { get; }
 		long Position { get; set; }
