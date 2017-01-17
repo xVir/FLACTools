@@ -234,10 +234,14 @@ namespace CUETools.Codecs.FLAKE
 
 			int offset = 0;
 			int sampleCount = buff.Length;
+		    int readCount = 0;
+		    // int badFramesCount = 0;
 
 			while (_samplesInBuffer < sampleCount)
 			{
-				if (_samplesInBuffer > 0)
+			    readCount++;
+
+                if (_samplesInBuffer > 0)
 				{
 					interlace(buff, offset, _samplesInBuffer);
 					sampleCount -= _samplesInBuffer;
@@ -251,11 +255,12 @@ namespace CUETools.Codecs.FLAKE
 				if (_framesBufferLength == 0)
                     return buff.Length = offset;
 
-				int bytesDecoded = DecodeFrame(_framesBuffer, _framesBufferOffset, _framesBufferLength);
+			    int bytesDecoded = DecodeFrame(_framesBuffer, _framesBufferOffset, _framesBufferLength);
+                
 				_framesBufferLength -= bytesDecoded;
 				_framesBufferOffset += bytesDecoded;
 
-				_samplesInBuffer -= _samplesBufferOffset; // can be set by Seek, otherwise zero
+				//_samplesInBuffer -= _samplesBufferOffset; // can be set by Seek, otherwise zero
 				_sampleOffset += _samplesInBuffer;
 			}
 
@@ -277,9 +282,11 @@ namespace CUETools.Codecs.FLAKE
 					AudioSamples.MemCpy(buff, buff + _framesBufferOffset, _framesBufferLength);
 				_framesBufferOffset = 0;
 			}
+		    long readCount = 0;
 			while (_framesBufferLength < _framesBuffer.Length / 2)
 			{
-				int read = _IO.Read(_framesBuffer, _framesBufferOffset + _framesBufferLength, _framesBuffer.Length - _framesBufferOffset - _framesBufferLength);
+			    readCount++;
+                int read = _IO.Read(_framesBuffer, _framesBufferOffset + _framesBufferLength, _framesBuffer.Length - _framesBufferOffset - _framesBufferLength);
 				_framesBufferLength += read;
 				if (read == 0)
 					break;
@@ -290,7 +297,9 @@ namespace CUETools.Codecs.FLAKE
 		{
 			int header_start = bitreader.Position;
 
-			if (bitreader.readbits(15) != 0x7FFC)
+		    uint readBits = bitreader.readbits(15);
+
+            if (readBits != 0x7FFC)
 				throw new Exception("invalid frame");
 			uint vbs = bitreader.readbit();
 			frame.bs_code0 = (int) bitreader.readbits(4);

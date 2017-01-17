@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CUETools.Codecs;
 using CUETools.Codecs.FLAKE;
 using NAudio.Wave;
@@ -15,21 +11,20 @@ namespace Colladeo.FlakeNAudioAdapter
         public FlakeFileReader(string path)
         {
             _flakeFileReader = new FlakeReader(path, null);
-            _streamInfo = _flakeFileReader.PCM;
-            _waveFormat =  new WaveFormat(_streamInfo.SampleRate, _streamInfo.BitsPerSample, _streamInfo.ChannelCount);
+            var streamInfo = _flakeFileReader.PCM;
+            _waveFormat =  new WaveFormat(streamInfo.SampleRate, streamInfo.BitsPerSample, streamInfo.ChannelCount);
 
-            var len = 65546 * _streamInfo.BitsPerSample / 8 * _streamInfo.ChannelCount;
-            _audioBuffer = new AudioBuffer(_streamInfo, len);
+            var len = 65546 * streamInfo.BitsPerSample / 8 * streamInfo.ChannelCount;
+            _audioBuffer = new AudioBuffer(streamInfo, len);
             _decompressBuffer = new byte[len];
         }
 
         private readonly FlakeReader _flakeFileReader;
         private readonly AudioBuffer _audioBuffer;
         private readonly WaveFormat _waveFormat;
-        private readonly AudioPCMConfig _streamInfo;
         private readonly object _repositionLock = new object();
 
-        private readonly byte[] _decompressBuffer;
+        private byte[] _decompressBuffer;
         private int _decompressLeftovers;
         private long _decompressBufferOffset;
 
@@ -93,11 +88,12 @@ namespace Colladeo.FlakeNAudioAdapter
 
                     // at this point our buffer will be empty
                     int br = _flakeFileReader.Read(_audioBuffer, count);
-                    if (br > 0)
-                    {
-                        _decompressLeftovers = _audioBuffer.ByteLength;
-                        Array.Copy(_audioBuffer.Bytes, 0, _decompressBuffer, 0, _decompressLeftovers);
-                    }
+                    if (br == 0) break;
+
+                    _decompressLeftovers = _audioBuffer.ByteLength;
+                    if (_decompressLeftovers > _decompressBuffer.Length)
+                        _decompressBuffer = new byte[_decompressLeftovers];
+                    Array.Copy(_audioBuffer.Bytes, 0, _decompressBuffer, 0, _decompressLeftovers);
                 }
             }
             
