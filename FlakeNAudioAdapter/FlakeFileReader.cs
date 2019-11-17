@@ -1,5 +1,4 @@
 ﻿using System;
-using CUETools.Codecs;
 using CUETools.Codecs.FLAKE;
 using NAudio.Wave;
 

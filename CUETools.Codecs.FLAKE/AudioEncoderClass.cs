@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
     /// <summary>
     ///    This class provides an attribute for marking

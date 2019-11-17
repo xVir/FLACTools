@@ -1,5 +1,6 @@
 using System;
-namespace CUETools.Codecs
+
+namespace CUETools.Codecs.FLAKE.CRC
 {
 	public static class Crc16
 	{

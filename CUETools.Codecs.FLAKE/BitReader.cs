@@ -1,6 +1,7 @@
 using System;
+using CUETools.Codecs.FLAKE.CRC;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
 	unsafe public class BitReader
     {

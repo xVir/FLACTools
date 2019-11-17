@@ -1,4 +1,4 @@
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE.CRC
 {
 	public enum InitialCrcValue { Zeros, NonZero1 = 0xffff, NonZero2 = 0x1D0F }
 

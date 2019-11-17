@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Collections.Generic;
 using System.Xml.Serialization;
-using System.Text;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
     public class AudioEncoderSettings
     {

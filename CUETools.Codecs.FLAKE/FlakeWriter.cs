@@ -25,10 +25,8 @@ using System;
 using System.ComponentModel;
 using System.Text;
 using System.IO;
-using System.Collections.Generic;
 using System.Security.Cryptography;
-
-using CUETools.Codecs;
+using CUETools.Codecs.FLAKE.CRC;
 
 namespace CUETools.Codecs.FLAKE
 {

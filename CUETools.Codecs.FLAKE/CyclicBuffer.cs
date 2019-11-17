@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
     public class CyclicBuffer
     {

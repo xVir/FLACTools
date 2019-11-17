@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
     [AudioDecoderClass("cuetools", "wav", 2)]
     public class WAVReader : IAudioSource

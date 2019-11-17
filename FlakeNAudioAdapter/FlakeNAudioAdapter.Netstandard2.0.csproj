@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>FlakeNAudioAdapter</RootNamespace>
+    <AssemblyName>FlakeNAudioAdapter</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NAudio">
+      <Version>1.9.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CUETools.Codecs.FLAKE\CUETools.Codecs.FLAKE.Netstandard2.0.csproj">
+      <Project>{082d6b9e-326e-4d15-9798-edae9ede70a6}</Project>
+      <Name>CUETools.Codecs.FLAKE</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
