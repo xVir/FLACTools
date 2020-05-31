@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CUETools.Codecs.FLAKE", "CUETools.Codecs.FLAKE\CUETools.Codecs.FLAKE.csproj", "{082D6B9E-326E-4D15-9798-EDAE9EDE70A6}"
 EndProject
@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLACCodecWin8", "FLACCodecW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestsWin8", "UnitTestsWin8\UnitTestsWin8.csproj", "{933C0D5C-D2C9-4336-B68E-C1B7DA732BEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlakeNAudioAdapter", "FlakeNAudioAdapter\FlakeNAudioAdapter.csproj", "{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlakeReaderTestApp", "FlakeReaderTestApp\FlakeReaderTestApp.csproj", "{E4B2FC7F-A8BE-440F-B56D-89CA443264CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlakeNAudioAdapter.Netstandard2.0", "FlakeNAudioAdapter\FlakeNAudioAdapter.Netstandard2.0.csproj", "{D15CACB5-83FB-4EC2-85E4-F75277158B62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,22 +87,6 @@ Global
 		{933C0D5C-D2C9-4336-B68E-C1B7DA732BEB}.Release|x86.ActiveCfg = Release|x86
 		{933C0D5C-D2C9-4336-B68E-C1B7DA732BEB}.Release|x86.Build.0 = Release|x86
 		{933C0D5C-D2C9-4336-B68E-C1B7DA732BEB}.Release|x86.Deploy.0 = Release|x86
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Debug|ARM.Build.0 = Debug|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Debug|x64.Build.0 = Debug|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Debug|x86.Build.0 = Debug|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Release|ARM.ActiveCfg = Release|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Release|ARM.Build.0 = Release|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Release|x64.ActiveCfg = Release|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Release|x64.Build.0 = Release|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Release|x86.ActiveCfg = Release|Any CPU
-		{8D5615FD-9AF7-4235-BBD4-1014CCA33AF8}.Release|x86.Build.0 = Release|Any CPU
 		{E4B2FC7F-A8BE-440F-B56D-89CA443264CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E4B2FC7F-A8BE-440F-B56D-89CA443264CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4B2FC7F-A8BE-440F-B56D-89CA443264CB}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -119,8 +103,27 @@ Global
 		{E4B2FC7F-A8BE-440F-B56D-89CA443264CB}.Release|x64.Build.0 = Release|Any CPU
 		{E4B2FC7F-A8BE-440F-B56D-89CA443264CB}.Release|x86.ActiveCfg = Release|Any CPU
 		{E4B2FC7F-A8BE-440F-B56D-89CA443264CB}.Release|x86.Build.0 = Release|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Debug|ARM.Build.0 = Debug|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Debug|x64.Build.0 = Debug|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Debug|x86.Build.0 = Debug|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Release|ARM.ActiveCfg = Release|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Release|ARM.Build.0 = Release|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Release|x64.ActiveCfg = Release|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Release|x64.Build.0 = Release|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Release|x86.ActiveCfg = Release|Any CPU
+		{D15CACB5-83FB-4EC2-85E4-F75277158B62}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48F70D34-628D-450A-80FF-8EC771FDE0D2}
 	EndGlobalSection
 EndGlobal

@@ -27,13 +27,11 @@ namespace Colladeo.FlakeNAudioAdapter
         private int _decompressLeftovers;
         private long _decompressBufferOffset;
 
-        #region WaveStream members
-
         public override long Length => _flakeFileReader.Length * _waveFormat.BlockAlign;
 
         public override long Position
         {
-            get { return _flakeFileReader.Position * _waveFormat.BlockAlign; }
+            get => _flakeFileReader.Position * _waveFormat.BlockAlign;
 
             set
             {
@@ -46,6 +44,12 @@ namespace Colladeo.FlakeNAudioAdapter
         }
 
         public override WaveFormat WaveFormat => _waveFormat;
+
+        private bool _canRead = true;
+        public override bool CanRead => _canRead;
+
+        private bool _canSeek = true;
+        public override bool CanSeek => _canSeek;
 
         /// <summary>
         /// Read from this FLAC stream
@@ -98,7 +102,12 @@ namespace Colladeo.FlakeNAudioAdapter
             
             return bytesRead;
         }
-    }
-#endregion
 
+        protected override void Dispose(bool disposing)
+        {
+            _flakeFileReader?.Close();
+            _canRead = false;
+            _canSeek = false;
+        }
+    }
 }
