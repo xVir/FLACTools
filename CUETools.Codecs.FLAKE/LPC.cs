@@ -1,6 +1,6 @@
 using System;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
 	public class lpc
 	{

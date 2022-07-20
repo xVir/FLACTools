@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
     public class UserDefinedReader : IAudioSource
     {

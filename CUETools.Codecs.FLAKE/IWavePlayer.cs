@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
     /// <summary>
     /// Represents the interface to a device that can play a WaveFile

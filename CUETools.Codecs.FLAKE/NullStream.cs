@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
     public class NullStream : Stream
     {

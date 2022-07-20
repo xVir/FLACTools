@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
     [AudioEncoderClass("cuetools", "wav", true, 10, typeof(WAVWriterSettings))]
     public class WAVWriter : IAudioDest

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
     public class AudioPipe : IAudioSource//, IDisposable
     {

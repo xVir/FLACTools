@@ -20,13 +20,12 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
+using CUETools.Codecs.FLAKE.CRC;
 
 namespace CUETools.Codecs.FLAKE
 {
-	[AudioDecoderClass("cuetools", "flac", 2)]
+    [AudioDecoderClass("cuetools", "flac", 2)]
 	public class FlakeReader: IAudioSource
 	{
 		int[] samplesBuffer;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
 	/// <summary>
 	/// Localized description attribute

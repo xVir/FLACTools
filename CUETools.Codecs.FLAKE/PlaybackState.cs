@@ -1,4 +1,4 @@
-﻿namespace CUETools.Codecs
+﻿namespace CUETools.Codecs.FLAKE
 {
     /// <summary>
     /// Playback State

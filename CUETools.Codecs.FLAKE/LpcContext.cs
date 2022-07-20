@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CUETools.Codecs
+namespace CUETools.Codecs.FLAKE
 {
     /// <summary>
     /// Context for LPC coefficients calculation and order estimation

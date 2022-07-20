@@ -25,10 +25,8 @@ using System;
 using System.ComponentModel;
 using System.Text;
 using System.IO;
-using System.Collections.Generic;
 using System.Security.Cryptography;
-
-using CUETools.Codecs;
+using CUETools.Codecs.FLAKE.CRC;
 
 namespace CUETools.Codecs.FLAKE
 {
@@ -84,7 +82,9 @@ namespace CUETools.Codecs.FLAKE
 
         // audio sample rate in Hz
         // set by user prior to calling flake_encode_init
+#pragma warning disable 649
         int sr_code0, sr_code1;
+#pragma warning restore 649
 
         // sample size in bits
         // set by user prior to calling flake_encode_init

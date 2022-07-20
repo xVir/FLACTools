@@ -1,15 +1,13 @@
-﻿using System;
-using System.IO;
-using CUETools.Codecs;
+﻿using System.IO;
 using CUETools.Codecs.FLAKE;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class FlakeWriterTest
     {
-        [TestMethod]
+        [Test]
         public void TestWriting()
         {
             AudioBuffer buff = WAVReader.ReadAllSamples("test.wav", null);
