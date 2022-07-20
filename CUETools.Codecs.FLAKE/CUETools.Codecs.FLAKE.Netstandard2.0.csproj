@@ -1,9 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>CUETools.Codecs.FLAKE</RootNamespace>
-    <AssemblyName>CUETools.Codecs.FLAKE</AssemblyName>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+﻿<Project>
+	<PropertyGroup>
+		<BaseIntermediateOutputPath>objns\</BaseIntermediateOutputPath>
+	</PropertyGroup>
+	<Import Sdk="Microsoft.NET.Sdk" Project="Sdk.props" />
+	<Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
+	<PropertyGroup>
+	    <TargetFramework>netstandard2.0</TargetFramework>
+	    <RootNamespace>CUETools.Codecs.FLAKE</RootNamespace>
+	    <AssemblyName>CUETools.Codecs.FLAKE</AssemblyName>
+	    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 </Project>
