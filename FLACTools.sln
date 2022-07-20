@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CUETools.Codecs.FLAKE", "CUETools.Codecs.FLAKE\CUETools.Codecs.FLAKE.csproj", "{082D6B9E-326E-4D15-9798-EDAE9EDE70A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{DCE90A90-FF63-49C3-A2CF-909C638A4FF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{DCE90A90-FF63-49C3-A2CF-909C638A4FF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLACCodecWin8", "FLACCodecWin8\FLACCodecWin8.csproj", "{180D86F8-6249-47F2-BB13-CC8FA14DB890}"
 EndProject
@@ -13,6 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestsWin8", "UnitTestsW
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{64208DC8-3536-44D9-B362-7EC7AEC11C5F}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet-desktop.yml = .github\workflows\dotnet-desktop.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
