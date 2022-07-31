@@ -5,10 +5,58 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="data\mozo-guapo.11025.flac" />
+	  <None Remove="data\mozo-guapo.16000.flac" />
+	  <None Remove="data\mozo-guapo.176400.flac" />
+	  <None Remove="data\mozo-guapo.192000.flac" />
+	  <None Remove="data\mozo-guapo.22050.flac" />
+	  <None Remove="data\mozo-guapo.24000.flac" />
+	  <None Remove="data\mozo-guapo.32000.flac" />
+	  <None Remove="data\mozo-guapo.44100.flac" />
+	  <None Remove="data\mozo-guapo.48000.flac" />
+	  <None Remove="data\mozo-guapo.8000.flac" />
+	  <None Remove="data\mozo-guapo.88200.flac" />
+	  <None Remove="data\mozo-guapo.96000.flac" />
 	  <None Remove="flake.flac" />
 	  <None Remove="test.wav" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Content Include="data\mozo-guapo.11025.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="data\mozo-guapo.16000.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="data\mozo-guapo.176400.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="data\mozo-guapo.192000.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="data\mozo-guapo.22050.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="data\mozo-guapo.24000.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="data\mozo-guapo.32000.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="data\mozo-guapo.44100.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="data\mozo-guapo.48000.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="data\mozo-guapo.8000.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="data\mozo-guapo.88200.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="data\mozo-guapo.96000.flac">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Include="flake.flac">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>

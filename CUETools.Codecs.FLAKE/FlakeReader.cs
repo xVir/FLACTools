@@ -328,12 +328,23 @@ namespace CUETools.Codecs.FLAKE
 
 			// custom sample rate
 			if (sr_code0 < 1 || sr_code0 > 11)
-			{
-				// sr_code0 == 12 -> sr == bitreader.readbits(8) * 1000;
-				// sr_code0 == 13 -> sr == bitreader.readbits(16);
-				// sr_code0 == 14 -> sr == bitreader.readbits(16) * 10;
-				throw new Exception("invalid sample rate mode");
-			}
+            {
+                uint sr;
+                switch (sr_code0)
+                {
+					case 12:
+                        sr = bitreader.readbits(8) * 1000;
+                        break;
+					case 13:
+						sr = bitreader.readbits(16);
+						break;
+					case 14:
+						sr = bitreader.readbits(16) * 10;
+                        break;
+					default:
+                        throw new Exception("invalid sample rate mode");
+				}
+            }
 
 			int frame_channels = (int)frame.ch_mode + 1;
 			if (frame_channels > 11)
